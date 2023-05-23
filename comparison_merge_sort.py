@@ -2,7 +2,6 @@ import random
 import os
 
 nbr_comparaison = 0
-print_ = 0
 v4 = 0
 v5 = 0
 v6 = 0
@@ -49,7 +48,6 @@ def fusion(a,b):
 
 while 0!=1 :
     nbr_comparaison = 0
-    print_ += 1
     liste = []
     non_egual = []
     ran()
@@ -69,10 +67,3 @@ while 0!=1 :
     pourcent = v4 + v5 + v6 + v7 + v8 + v9
     clear_console()
     print(f'4: {int((v4/pourcent)*100)}%  5: {int((v5/pourcent)*100)}%  6: {int((v6/pourcent)*100)}%  7: {int((v7/pourcent)*100)}%  8: {int((v8/pourcent)*100)}%  9: {int((v9/pourcent)*100)}%')
-    
-
-
-'''print(liste)
-print(triFusion(liste))
-print(f'Il y a eu {nbr_comparaison} comparaisons.')'''
-
