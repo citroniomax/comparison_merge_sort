@@ -9,21 +9,6 @@ v_prct = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 def clear_console():       # clear console pour affichage
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def ran():      # generation nombre aleatoire
-    global liste
-    global non_egual
-    n = 0
-    while n != nbr_par_liste:
-        x = random.randint(0,100)
-        n += 1
-        if x in non_egual:
-            x = random.randint(0,100)
-            n -= 1
-        else:
-            liste.append(x)
-            non_egual.append(x)
-    print(liste)
-
 def tri_fusion(x):       # tri fusion
     if len(x) == 1:
         return x
