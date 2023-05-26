@@ -2,21 +2,18 @@ import random
 import os
 
 nbr_comparaison = 0
-v4 = 0
-v5 = 0
-v6 = 0
-v7 = 0
-v8 = 0
-v9 = 0
+pourcent = 0
+nbr_par_liste = int(input('combien de nombre par liste a trier : '))
+v_prct = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-def clear_console():
+def clear_console():       # clear console pour affichage
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def ran():
+def ran():      # generation nombre aleatoire
     global liste
     global non_egual
     n = 0
-    while n != 5:
+    while n != nbr_par_liste:
         x = random.randint(0,100)
         n += 1
         if x in non_egual:
@@ -27,12 +24,11 @@ def ran():
             non_egual.append(x)
     print(liste)
 
-def triFusion(x):
+def tri_fusion(x):       # tri fusion
     if len(x) == 1:
         return x
     else:
-        return fusion(triFusion(x[:len(x)//2:]), triFusion(x[len(x)//2::]))
-    
+        return fusion(tri_fusion(x[:len(x)//2:]), tri_fusion(x[len(x)//2::]))
 def fusion(a,b):
     global nbr_comparaison
     if len(a) == 0:
@@ -46,24 +42,30 @@ def fusion(a,b):
         nbr_comparaison += 1
         return [b[0]] + fusion(a, b[1:])
 
-while 0!=1 :
+while 0!=1 :       # boucle principale
     nbr_comparaison = 0
     liste = []
     non_egual = []
-    ran()
-    triFusion(liste)
-    if nbr_comparaison == 4:
-        v4 += 1
-    elif nbr_comparaison == 5:
-        v5 += 1
-    elif nbr_comparaison == 6:
-        v6 += 1
-    elif nbr_comparaison == 7:
-        v7 += 1
-    elif nbr_comparaison == 8:
-        v8 += 1
-    elif nbr_comparaison == 9:
-        v9 += 1
-    pourcent = v4 + v5 + v6 + v7 + v8 + v9
+    
+    n = 0
+    while n != nbr_par_liste:
+        x = random.randint(0,100)
+        n += 1
+        if x in non_egual:
+            x = random.randint(0,100)
+            n -= 1
+        else:
+            liste.append(x)
+            non_egual.append(x)
+            
+    tri_fusion(liste)
+    print(liste)
+
+    for i in range(1,10):
+        if nbr_comparaison == i:
+            v_prct[i] += 1
+            pourcent += 1
+
     clear_console()
-    print(f'4: {int((v4/pourcent)*100)}%  5: {int((v5/pourcent)*100)}%  6: {int((v6/pourcent)*100)}%  7: {int((v7/pourcent)*100)}%  8: {int((v8/pourcent)*100)}%  9: {int((v9/pourcent)*100)}%')
+    for i in range(1,10,3):
+        print(f'{i}: {int((v_prct[i]/pourcent)*100)}%  {i+1}: {int((v_prct[i+1]/pourcent)*100)}%  {i+2}: {int((v_prct[i+2]/pourcent)*100)}%')
